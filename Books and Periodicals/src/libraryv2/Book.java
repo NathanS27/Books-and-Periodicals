@@ -16,4 +16,17 @@ public class Book extends Item {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	@Override
+	public int compareTo(Object obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String print() {
+		// TODO Auto-generated method stub
+		return getName()+" "+  getAuthor();
+	}
 }
+

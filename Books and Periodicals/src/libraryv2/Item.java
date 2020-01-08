@@ -1,6 +1,6 @@
 package libraryv2;
 
-public class Item {
+public abstract class Item implements Comparable{
 	
 	private String name;
 	
@@ -15,4 +15,12 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String toString() {
+		return name;
+	}
+	
+	public abstract int compareTo(Object obj);
+	
+	public abstract String print();
 }

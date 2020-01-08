@@ -14,4 +14,14 @@ public class Periodical extends Item {
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	@Override
+	public int compareTo(Object obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public String print() {
+		// TODO Auto-generated method stub
+		return getName()+" "+getNumber();
+	}
 }

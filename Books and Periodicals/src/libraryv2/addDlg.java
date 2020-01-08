@@ -16,13 +16,13 @@ public class addDlg extends GBDialog {
     JRadioButton book  = addRadioButton ("Book", 1,1,1,1);
     JRadioButton periodical  = addRadioButton ("Periodical", 1,2,1,1);
 	
-    JLabel nameLabel = addLabel("Name:",2,1,1,1);
+    JLabel nameLabel = addLabel("Title:",2,1,1,1);
     JTextField name = addTextField("",2,2,2,1);
     
     JLabel periodNumLbl = addLabel("Periodical Number:",3,1,1,1);
     JTextField periodNum = addTextField("",3,2,2,1);
     
-    JLabel authorlbl = addLabel("Major:",4,1,1,1);
+    JLabel authorlbl = addLabel("Author:",4,1,1,1);
     JTextField author = addTextField("",4,2,2,1);
    
     JFrame parentClass;
