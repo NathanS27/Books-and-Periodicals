@@ -1,13 +1,11 @@
 package libraryv2;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.event.*;
 
 import BreezySwing.*;
 
 import java.awt.Color;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 public class addDlg extends GBDialog {

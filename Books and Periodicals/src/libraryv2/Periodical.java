@@ -16,9 +16,13 @@ public class Periodical extends Item {
 	}
 	@Override
 	public int compareTo(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		if(number==((Periodical)obj).getNumber()) {
+			return 0;
+		}
+		else if(number>((Periodical)obj).getNumber()) {
+			return 1;
+		}
+		return -1;	}
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub

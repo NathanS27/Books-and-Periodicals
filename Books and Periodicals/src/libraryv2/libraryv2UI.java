@@ -62,17 +62,43 @@ public class libraryv2UI extends GBFrame {
 	}
 	
 	public void listDoubleClicked(JList listObj,String itemClicked) {
-	//TODO change color based on sort
+		int index = bookList.getSelectedIndex(); 
+		// if something is actually selected
+		if (index >= 0){
+			sortList(library.get(index));
+		}
 	}
 	
 	private void sortList(Object obj) {
+		int[] code= new int[10];
+		int index=0;
 		if(obj.getClass().equals(Book.class)) {
-			for(Item i: library) {
-				if((i instanceof Book)&&(((Book)i).compareTo(obj)==1)) {
-					
+			System.out.println("issa book");
+			for(Item i:library) {
+				try {
+					code[index]=i.compareTo(obj);
+					index++;
+				}
+				catch(ClassCastException e) {
+					code[index]=-2;
+					index++;
 				}
 			}
 		}
+		else if(obj.getClass().equals(Periodical.class)) {
+			System.out.println("issa magazine");
+			for(Item i:library) {
+				try {
+					code[index]=i.compareTo(obj);
+					index++;
+				}
+				catch(ClassCastException e) {
+					code[index]=-2;
+					index++;
+				}
+			}
+		}
+		addToListColor(library,code);
 	}
 	
 	private void display(Item i) {
@@ -84,6 +110,35 @@ public class libraryv2UI extends GBFrame {
 		model.clear();
 		for(Item temp: list) {
 			model.addElement(temp.getName());
+		}
+	}
+	private void addToListColor(ArrayList<Item> list,int[] code) {
+		DefaultListModel model = (DefaultListModel) bookList.getModel();
+		for(int i:code) {
+			System.out.println(i);
+		}
+		model.clear();
+		int index=0;
+		for(Item temp: list) {
+			String str="ERROR";
+			if(code[index]==0) {
+				str=String.format("<html><font color='blue'>%s</font></html>", temp.getName());
+				System.out.println("Match");
+			}
+			else if(code[index]==-1) {
+				str=String.format("<html><font color='red'>%s</font></html>", temp.getName());
+				System.out.println("after");
+			}
+			else if(code[index]==-2) {
+				str=String.format("<html><font color='black'>%s</font></html>", temp.getName());
+				System.out.println("Nope");
+			}
+			else if(code[index]==1) {
+				str=String.format("<html><font color='green'>%s</font></html>", temp.getName());
+				System.out.println("before");
+			}
+			model.addElement(str);
+			index++;
 		}
 	}
 }
