@@ -47,6 +47,7 @@ public class libraryv2UI extends GBFrame {
 			library.add(new Periodical("Sport Illustrated",123));
 			library.add(new Periodical("Sport Illustrated",12));
 			library.add(new Periodical("Sport Illustrated",4123));
+			library.add(new Periodical("Sport Illustrated",4123));
 			library.add(new Periodical("Sport Illustrated",11));
 			addToList(library);
 			revalidate();
@@ -70,7 +71,7 @@ public class libraryv2UI extends GBFrame {
 	}
 	
 	private void sortList(Object obj) {
-		int[] code= new int[10];
+		int[] code= new int[library.size()];
 		int index=0;
 		if(obj.getClass().equals(Book.class)) {
 			System.out.println("issa book");
