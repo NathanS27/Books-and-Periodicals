@@ -26,6 +26,6 @@ public class Periodical extends Item {
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub
-		return getName()+" "+getNumber();
+		return getName()+"; "+getNumber();
 	}
 }

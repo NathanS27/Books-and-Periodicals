@@ -21,7 +21,7 @@ public class Book extends Item {
 	public int compareTo(Object obj) {
 		if(getAuthor()==((Book)obj).getAuthor()) {
 			System.out.println(((Book)obj).getAuthor());
-			return 1;
+			return 0;
 		}
 		return -1;
 	}
@@ -29,7 +29,7 @@ public class Book extends Item {
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub
-		return getName()+" "+  getAuthor();
+		return getName()+"; "+  getAuthor();
 	}
 }
 

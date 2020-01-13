@@ -10,11 +10,14 @@ public class libraryv2UI extends GBFrame {
 	
 	JMenuItem add = addMenuItem("Edit","add");
 	JMenuItem populate = addMenuItem("Edit","Populate");
+	JMenuItem clear = addMenuItem("Edit","Clear");
 	
 	JList bookList = addList(1,1,1,1);
-	JTextArea bookInfo = addTextArea("",1,2,2,1);
+	JTextArea bookInfo = addTextArea("",1,2,1,1);
+	JLabel selected = addLabel("selected",1,3,1,1);
 	
 	ArrayList<Item> library = new ArrayList<Item>();
+	ArrayList<Item> toDisplay = new ArrayList<Item>();
 	
 	public libraryv2UI() {
 		
@@ -38,17 +41,29 @@ public class libraryv2UI extends GBFrame {
 			revalidate();
 		}
 		if(menuItem==populate) {
-			library.add(new Book("Cat In The Hat","Dr. Seuss"));
+			library.add(new Book("Horten Hears a Who","Dr. Seuss"));
 			library.add(new Book("Cat In The Hat","Dr. Seuss"));
 			library.add(new Book("The Grapes Of Wrath","John Steinbeck"));
 			library.add(new Book("To Kill A Mockingbird","Harper Lee"));
-			library.add(new Book("Webster’s Dictionary","Webster"));
+			library.add(new Book("Of Mice and Men","John Steinbeck"));
 			library.add(new Periodical("Sport Illustrated",23));
+			library.add(new Periodical("Sport Illustrated",1));
 			library.add(new Periodical("Sport Illustrated",123));
 			library.add(new Periodical("Sport Illustrated",12));
 			library.add(new Periodical("Sport Illustrated",4123));
 			library.add(new Periodical("Sport Illustrated",4123));
-			library.add(new Periodical("Sport Illustrated",11));
+			library.add(new Periodical("Flying",1));
+			library.add(new Periodical("Flying",2));
+			library.add(new Periodical("Flying",2));
+			library.add(new Periodical("Flying",2));
+			library.add(new Periodical("Flying",4));
+			library.add(new Periodical("Flying",6));
+			addToList(library);
+			revalidate();
+		}
+		if(menuItem==clear) {
+			library.clear();
+			bookInfo.setText("");
 			addToList(library);
 			revalidate();
 		}
@@ -67,10 +82,12 @@ public class libraryv2UI extends GBFrame {
 		// if something is actually selected
 		if (index >= 0){
 			sortList(library.get(index));
+			displayMultiple(toDisplay);
 		}
 	}
 	
 	private void sortList(Object obj) {
+		toDisplay.clear();
 		int[] code= new int[library.size()];
 		int index=0;
 		if(obj.getClass().equals(Book.class)) {
@@ -78,6 +95,9 @@ public class libraryv2UI extends GBFrame {
 			for(Item i:library) {
 				try {
 					code[index]=i.compareTo(obj);
+					if(code[index]==0) {
+						toDisplay.add(i);
+					}
 					index++;
 				}
 				catch(ClassCastException e) {
@@ -91,6 +111,9 @@ public class libraryv2UI extends GBFrame {
 			for(Item i:library) {
 				try {
 					code[index]=i.compareTo(obj);
+					if(code[index]==0) {
+						toDisplay.add(i);
+					}
 					index++;
 				}
 				catch(ClassCastException e) {
@@ -104,6 +127,14 @@ public class libraryv2UI extends GBFrame {
 	
 	private void display(Item i) {
 		bookInfo.setText(i.print());
+	}
+	
+	private void displayMultiple(ArrayList<Item> list) {
+		String str="";
+		for(Item i: list) {
+			str+=i.print()+"\n";	
+		}
+		bookInfo.setText(str);
 	}
 	
 	private void addToList(ArrayList<Item> list) {
@@ -127,7 +158,7 @@ public class libraryv2UI extends GBFrame {
 				System.out.println("Match");
 			}
 			else if(code[index]==-1) {
-				str=String.format("<html><font color='red'>%s</font></html>", temp.getName());
+				str=String.format("<html><font color='green'>%s</font></html>", temp.getName());
 				System.out.println("after");
 			}
 			else if(code[index]==-2) {
@@ -135,7 +166,7 @@ public class libraryv2UI extends GBFrame {
 				System.out.println("Nope");
 			}
 			else if(code[index]==1) {
-				str=String.format("<html><font color='green'>%s</font></html>", temp.getName());
+				str=String.format("<html><font color='red'>%s</font></html>", temp.getName());
 				System.out.println("before");
 			}
 			model.addElement(str);
