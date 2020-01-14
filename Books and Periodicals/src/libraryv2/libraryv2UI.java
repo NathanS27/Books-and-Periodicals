@@ -1,6 +1,7 @@
 package libraryv2;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -10,18 +11,18 @@ public class libraryv2UI extends GBFrame {
 	
 	JMenuItem add = addMenuItem("Edit","add");
 	JMenuItem populate = addMenuItem("Edit","Populate");
+	JMenuItem reset = addMenuItem("Edit","Reset");
 	JMenuItem clear = addMenuItem("Edit","Clear");
 	
 	JList bookList = addList(1,1,1,1);
 	JTextArea bookInfo = addTextArea("",1,2,1,1);
-	JLabel selected = addLabel("selected",1,3,1,1);
 	
 	ArrayList<Item> library = new ArrayList<Item>();
 	ArrayList<Item> toDisplay = new ArrayList<Item>();
 	
 	public libraryv2UI() {
-		
-	}
+		bookInfo.setFont(new Font("Monaco", Font.ROMAN_BASELINE, 15));
+	}	
 	
 	public static void main(String[] args) {
 		JFrame frm = new libraryv2UI();
@@ -67,10 +68,15 @@ public class libraryv2UI extends GBFrame {
 			addToList(library);
 			revalidate();
 		}
+		if(menuItem==reset) {
+			bookInfo.setText("");
+			addToList(library);
+			revalidate();
+		}
 	}
 	
 	public void listItemSelected (JList listObj){
-		int index = bookList.getSelectedIndex(); 
+		int index = bookList.getSelectedIndex();
 		// if something is actually selected
 		if (index >= 0){
 			display(library.get(index));
@@ -91,7 +97,6 @@ public class libraryv2UI extends GBFrame {
 		int[] code= new int[library.size()];
 		int index=0;
 		if(obj.getClass().equals(Book.class)) {
-			System.out.println("issa book");
 			for(Item i:library) {
 				try {
 					code[index]=i.compareTo(obj);
@@ -107,7 +112,6 @@ public class libraryv2UI extends GBFrame {
 			}
 		}
 		else if(obj.getClass().equals(Periodical.class)) {
-			System.out.println("issa magazine");
 			for(Item i:library) {
 				try {
 					code[index]=i.compareTo(obj);
@@ -146,28 +150,21 @@ public class libraryv2UI extends GBFrame {
 	}
 	private void addToListColor(ArrayList<Item> list,int[] code) {
 		DefaultListModel model = (DefaultListModel) bookList.getModel();
-		for(int i:code) {
-			System.out.println(i);
-		}
 		model.clear();
 		int index=0;
 		for(Item temp: list) {
 			String str="ERROR";
 			if(code[index]==0) {
-				str=String.format("<html><font color='blue'>%s</font></html>", temp.getName());
-				System.out.println("Match");
+				str=String.format("<html><font color='blue'>%s: </font>Match</html>", temp.getName());
 			}
 			else if(code[index]==-1) {
-				str=String.format("<html><font color='green'>%s</font></html>", temp.getName());
-				System.out.println("after");
+				str=String.format("<html><font color='green'>%s: </font>Before</html>", temp.getName());
 			}
 			else if(code[index]==-2) {
-				str=String.format("<html><font color='black'>%s</font></html>", temp.getName());
-				System.out.println("Nope");
+				str=String.format("<html><font color='black'>%s </font></html>", temp.getName());
 			}
 			else if(code[index]==1) {
-				str=String.format("<html><font color='red'>%s</font></html>", temp.getName());
-				System.out.println("before");
+				str=String.format("<html><font color='red'>%s: </font>After</html>", temp.getName());
 			}
 			model.addElement(str);
 			index++;
