@@ -4,9 +4,17 @@ public class Periodical extends Item {
 
 	private int number;
 	
-	public Periodical(String nm, int num) {
+	public Periodical(String nm, String num) throws FormatException {
 		super(nm);
-		number=num;
+		if(num.isEmpty()) {
+			throw new FormatException("Please input an Issue number");
+		}
+		try {
+		number=Integer.parseInt(num);
+		}
+		catch(NumberFormatException e) {
+			throw new FormatException("Issue number must be an Integer");
+		}
 	}
 	public int getNumber() {
 		return number;

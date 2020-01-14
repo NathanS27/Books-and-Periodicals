@@ -9,7 +9,7 @@ import BreezySwing.*;
 
 public class libraryv2UI extends GBFrame {
 	
-	JMenuItem add = addMenuItem("Edit","add");
+	JMenuItem add = addMenuItem("Edit","Add");
 	JMenuItem populate = addMenuItem("Edit","Populate");
 	JMenuItem reset = addMenuItem("Edit","Reset");
 	JMenuItem clear = addMenuItem("Edit","Clear");
@@ -42,25 +42,30 @@ public class libraryv2UI extends GBFrame {
 			revalidate();
 		}
 		if(menuItem==populate) {
-			library.add(new Book("Horten Hears a Who","Dr. Seuss"));
-			library.add(new Book("Cat In The Hat","Dr. Seuss"));
-			library.add(new Book("The Grapes Of Wrath","John Steinbeck"));
-			library.add(new Book("To Kill A Mockingbird","Harper Lee"));
-			library.add(new Book("Of Mice and Men","John Steinbeck"));
-			library.add(new Periodical("Sport Illustrated",23));
-			library.add(new Periodical("Sport Illustrated",1));
-			library.add(new Periodical("Sport Illustrated",123));
-			library.add(new Periodical("Sport Illustrated",12));
-			library.add(new Periodical("Sport Illustrated",4123));
-			library.add(new Periodical("Sport Illustrated",4123));
-			library.add(new Periodical("Flying",1));
-			library.add(new Periodical("Flying",2));
-			library.add(new Periodical("Flying",2));
-			library.add(new Periodical("Flying",2));
-			library.add(new Periodical("Flying",4));
-			library.add(new Periodical("Flying",6));
-			addToList(library);
-			revalidate();
+			try {
+				library.add(new Book("Horten Hears a Who","Dr. Seuss"));
+				library.add(new Book("Cat In The Hat","Dr. Seuss"));
+				library.add(new Book("The Grapes Of Wrath","John Steinbeck"));
+				library.add(new Book("To Kill A Mockingbird","Harper Lee"));
+				library.add(new Book("Of Mice and Men","John Steinbeck"));
+				library.add(new Periodical("Sport Illustrated","23"));
+				library.add(new Periodical("Sport Illustrated","1"));
+				library.add(new Periodical("Sport Illustrated","123"));
+				library.add(new Periodical("Sport Illustrated","12"));
+				library.add(new Periodical("Sport Illustrated","4123"));
+				library.add(new Periodical("Sport Illustrated","4123"));
+				library.add(new Periodical("Flying","1"));
+				library.add(new Periodical("Flying","2"));
+				library.add(new Periodical("Flying","2"));
+				library.add(new Periodical("Flying","2"));
+				library.add(new Periodical("Flying","4"));
+				library.add(new Periodical("Flying","6"));
+				addToList(library);
+				revalidate();
+			}
+			catch(FormatException e) {
+				
+			}
 		}
 		if(menuItem==clear) {
 			library.clear();

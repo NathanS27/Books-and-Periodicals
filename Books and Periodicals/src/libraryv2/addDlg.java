@@ -71,8 +71,18 @@ public class addDlg extends GBDialog {
 	}
 	
 	public void buttonClicked(JButton buttonObj) {
-			library.add(new Book(name.getText(),author.getText()));
-			dispose();	
+			try {
+				if(book.isSelected()) {
+					library.add(new Book(name.getText(),author.getText()));
+				}
+				if(periodical.isSelected()) {
+					library.add(new Periodical(name.getText(),periodNum.getText()));
+				}
+				dispose();	
+			}
+			catch(FormatException e) {
+				errorMsg(e.getMessage());
+			}
 	}
 	
 	private void errorMsg(String str) {

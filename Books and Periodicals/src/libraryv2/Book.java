@@ -1,12 +1,15 @@
 package libraryv2;
 
-public class Book extends Item {
+public class Book extends Item{
 	
 	private String author;
 	
-	public Book(String nm, String ath) {
+	public Book(String nm, String ath) throws FormatException {
 		super(nm);
-		author=ath;
+		if(ath.isEmpty()) {
+			throw new FormatException("Please Enter an Author");
+		}
+		setAuthor(ath);
 	}
 
 	public String getAuthor() {
@@ -22,7 +25,7 @@ public class Book extends Item {
 		if(getAuthor()==((Book)obj).getAuthor()) {
 			return 0;
 		}
-		return -1;
+		return -2;
 	}
 
 	@Override

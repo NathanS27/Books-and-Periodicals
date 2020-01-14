@@ -4,7 +4,10 @@ public abstract class Item implements Comparable{
 	
 	private String name;
 	
-	public Item(String nm) {
+	public Item(String nm) throws FormatException {
+		if(nm.isEmpty()) {
+			throw new FormatException("Please enter a Title");
+		}
 		setName(nm);
 	}
 
