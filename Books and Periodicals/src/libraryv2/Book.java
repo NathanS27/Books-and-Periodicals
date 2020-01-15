@@ -22,7 +22,7 @@ public class Book extends Item{
 
 	@Override
 	public int compareTo(Object obj) {
-		return getAuthor().compareTo(((Book)obj).getAuthor());
+		return getAuthor().toLowerCase().compareTo(((Book)obj).getAuthor().toLowerCase());
 	}
 
 	@Override

@@ -44,9 +44,9 @@ public class libraryv2UI extends GBFrame {
 		}
 		if(menuItem==populate) {
 			try {
-				library.add(new Book("Horten Hears a Who","Dr. Seuss"));
+				library.add(new Book("Horton Hears a Who","Dr. Seuss"));
 				library.add(new Book("Cat In The Hat","Dr. Seuss"));
-				library.add(new Book("The Grapes Of Wrath","John Steinbeck"));
+				library.add(new Book("The Grapes Of Wrath","john steinbeck"));
 				library.add(new Book("To Kill A Mockingbird","Harper Lee"));
 				library.add(new Book("Of Mice and Men","John Steinbeck"));
 				library.add(new Periodical("Sport Illustrated","23"));
@@ -108,6 +108,12 @@ public class libraryv2UI extends GBFrame {
 					code[index]=i.compareTo(obj);
 					if(code[index]==0) {
 						toDisplay.add(i);
+					}
+					else if(code[index]>0) {
+						code[index]=1;
+					}
+					else if(code[index]<0) {
+						code[index]=-1;
 					}
 					index++;
 				}
