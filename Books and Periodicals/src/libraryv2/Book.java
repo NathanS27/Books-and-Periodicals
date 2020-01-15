@@ -22,16 +22,13 @@ public class Book extends Item{
 
 	@Override
 	public int compareTo(Object obj) {
-		if(getAuthor()==((Book)obj).getAuthor()) {
-			return 0;
-		}
-		return -2;
+		return getAuthor().compareTo(((Book)obj).getAuthor());
 	}
 
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub
-		return getName()+"; "+  getAuthor();
+		return "Title: "+getName()+"\nAuthor: "+  getAuthor()+"\n\n";
 	}
 }
 

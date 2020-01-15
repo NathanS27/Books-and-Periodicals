@@ -21,7 +21,8 @@ public class libraryv2UI extends GBFrame {
 	ArrayList<Item> toDisplay = new ArrayList<Item>();
 	
 	public libraryv2UI() {
-		bookInfo.setFont(new Font("Monaco", Font.ROMAN_BASELINE, 15));
+		bookInfo.setFont(new Font("Times", Font.ROMAN_BASELINE, 20));
+		bookList.setFont(new Font("Times", Font.PLAIN, 15));
 	}	
 	
 	public static void main(String[] args) {
@@ -140,8 +141,13 @@ public class libraryv2UI extends GBFrame {
 	
 	private void displayMultiple(ArrayList<Item> list) {
 		String str="";
+		int items=0;
 		for(Item i: list) {
-			str+=i.print()+"\n";	
+			if(items==1) {
+				str+="\n----Matches----\n";
+			}
+			str+=i.print()+"\n";
+			items++;
 		}
 		bookInfo.setText(str);
 	}
@@ -158,15 +164,12 @@ public class libraryv2UI extends GBFrame {
 		model.clear();
 		int index=0;
 		for(Item temp: list) {
-			String str="ERROR";
+			String str=String.format("<html><font color='black'>%s </font></html>", temp.getName());;
 			if(code[index]==0) {
 				str=String.format("<html><font color='blue'>%s: </font>Match</html>", temp.getName());
 			}
 			else if(code[index]==-1) {
 				str=String.format("<html><font color='green'>%s: </font>Before</html>", temp.getName());
-			}
-			else if(code[index]==-2) {
-				str=String.format("<html><font color='black'>%s </font></html>", temp.getName());
 			}
 			else if(code[index]==1) {
 				str=String.format("<html><font color='red'>%s: </font>After</html>", temp.getName());

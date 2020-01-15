@@ -10,7 +10,11 @@ public class Periodical extends Item {
 			throw new FormatException("Please input an Issue number");
 		}
 		try {
-		number=Integer.parseInt(num);
+			int temp=Integer.parseInt(num);
+			if(temp>0) {
+				number=temp;
+			}
+		
 		}
 		catch(NumberFormatException e) {
 			throw new FormatException("Issue number must be an Integer");
@@ -34,6 +38,6 @@ public class Periodical extends Item {
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub
-		return getName()+"; "+getNumber();
+		return "Title: "+getName()+"\nIssue: "+getNumber()+"\n\n";
 	}
 }
